@@ -1,9 +1,5 @@
-class foremaninstaller($installType = 'AllInOne') {
+class foremaninstaller {
    include foremaninstaller::setup
-   case $installType {
-   	'AllInOne': { include foremaninstaller::install_foreman }
-   	'PuppetMaster': { include foremaninstaller::install_puppetmaster }
-   	default: { include foremaninstaller::install_foreman }
-   }      
-  
+   include foremaninstaller::install_foreman
+   include foremaninstaller::setup_r10k
 }

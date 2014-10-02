@@ -10,12 +10,30 @@
 # See params.pp in each class for what options are available
 ---
 foreman:
-  custom_repo: true
+  custom_repo: true    
+  environment: master 
+  configure_scl_repo: true
+  configure_epel_repo: true
+  admin_first_name: foreman
+  admin_last_name: admin
+  admin_password: changeme
+  admin_username: admin    
 foreman_proxy:
   custom_repo: true
+  dns: false
+  puppetca: true
+  dhcp: true
+  dhcp_range: "10.161.237.209 10.161.237.221"
+  dhcp_gateway: "10.161.237.254"  
+  puppetrun: true
 puppet:
   server: true
-  server_git_repo: false
+  server_git_repo: true
+  version: 3.4.2-1.el6  
+  server_environments: master
+  server_ca: true
+  server: true
+  agent: true      
 foreman::plugin::bootdisk: true
 foreman::plugin::chef: false
 foreman::plugin::default_hostgroup: true
@@ -24,7 +42,7 @@ foreman::plugin::hooks: true
 foreman::plugin::puppetdb: true
 foreman::plugin::setup: true
 foreman::plugin::templates: true
-foreman::compute::ec2: false
+foreman::compute::ec2: true
 foreman::compute::gce: false
 foreman::compute::libvirt: false
 foreman::compute::openstack: false
